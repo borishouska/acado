@@ -107,8 +107,8 @@ returnValue BinaryOperator::AD_symmetric( SharedOperator     &l  ,
   // DETERMINE THE UNION OF ALL DEPENDENCIES:
   // ------------------------------------------------
     
-    std::set<Operator*> dep;
-    std::set<Operator*>::iterator run1, run2;
+    std::set<const Operator*> dep;
+    std::set<const Operator*>::iterator run1, run2;
     SharedOperatorMap::iterator it;
     
     for( it = S1.begin(); it != S1.end(); ++it ) dep.insert(it->first);

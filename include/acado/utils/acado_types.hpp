@@ -73,6 +73,11 @@ class Operator;
 class Expression;
 
 
+template <typename T>
+struct TemplateMap {
+  typedef std::map<const Operator*,T> Milan;
+};
+
 /** Smart pointers that are used in the symbolic expression and operator classes.*/
 typedef std::tr1::shared_ptr<Operator> SharedOperator;
 
@@ -80,19 +85,19 @@ typedef std::tr1::shared_ptr<Operator> SharedOperator;
 typedef std::vector<SharedOperator> SharedOperatorVector;
 
 /** Define a 1D map of SharedOperators.*/
-typedef std::unordered_map<Operator*,SharedOperator> SharedOperatorMap ;
+typedef TemplateMap<SharedOperator>::Milan SharedOperatorMap ;
 
 /** Define a 2D map of SharedOperators.*/
-typedef std::unordered_map<Operator*,SharedOperatorMap> SharedOperatorMap2;
+typedef TemplateMap<SharedOperatorMap>::Milan SharedOperatorMap2;
 
 /** Define a 3D map of SharedOperators.*/
-typedef std::unordered_map<Operator*,SharedOperatorMap2> SharedOperatorMap3;
+typedef TemplateMap<SharedOperatorMap2>::Milan SharedOperatorMap3;
 
 /** Define a dependency map.*/
-typedef std::unordered_map<Operator*,uint> DependencyMap;
+typedef TemplateMap<uint>::Milan DependencyMap;
 
 /** Define a name map.*/
-typedef std::unordered_map<const Operator*,std::string> StringMap;
+typedef TemplateMap<std::string>::Milan StringMap;
 
 
 /** Defines the Neutral Elements ZERO and ONE as well as the default
